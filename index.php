@@ -17,16 +17,11 @@
     <body>
         <div class="container">
             <div class="hero-unit">
-            <?php
-                include 'db-connect.php';
-                $query = $pdo->prepare('SELECT * FROM festival');
-                $query->execute();
-                while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
-                    printf(
-                        "<h1>%s</h1>",$row[1]
-                    );
-                }
-            ?>
+
+                <?php
+                    include 'festival_body.php';
+                ?>
+    
             </div> 
         </div>
 
