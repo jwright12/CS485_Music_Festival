@@ -29,7 +29,7 @@
 
 		$message = "Registration Successful";
 		
-		header("Location: http://cs485.localhost/index.php?id='$id'");
+		header("Location: http://cs485.localhost/index.php?id=$id");
 	} 
 ?>
 

@@ -13,7 +13,7 @@
 			$array = $query->fetch();
 			$id = $array[0];
 
-			header("Location: http://cs485.localhost/index.php?id='$id'");
+			header("Location: http://cs485.localhost/index.php?id=$id");
 			
 		} else {
 			$message = "Invalid username or password.";

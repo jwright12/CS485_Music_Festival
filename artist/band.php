@@ -1,4 +1,7 @@
+<?php
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,20 +11,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Ultimate Music Festival Manager - Pro Version</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
         <style>body {margin-top: 40px; background-color: #333;}</style>
-        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet">
     </head>
 
     <body>
         <div class="container">
             <div class="hero-unit">
 
-                <?php
-                    include 'festival/festival_body.php';
-                ?>
-    
+                <h1>Band Management</h1>
+
+                <br>
+
+                <form action="" method="post">
+					<div class="mb-3">
+							<label for="band_name" class="form-label"><b>Band Name</b></label>
+							<input type="text" class="form-control" name="band_name">
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Register Band</button>
+				</form>
+		
+				<br>
+
             </div> 
         </div>
 
