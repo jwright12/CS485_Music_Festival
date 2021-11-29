@@ -33,12 +33,14 @@
                                 </form>
                             </th>
                             <th scope="col">
-                                <form action="add_music.php" method="post">
+                                <form action="add_music.php?id=<?php echo $id;?>" method="post">
+                                    <input type="hidden" name="id" value=<?php echo $id;?>>
                                     <button type="submit" class="btn btn-primary">Upload Music</button>
                                 </form>
                             </th>
                             <th scope="col">
-                                <form action="band.php" method="post">
+                                <form action="set_list.php?id=<?php echo $id;?>" method="post">
+                                    <input type="hidden" name="id" value=<?php echo $id;?>>
                                     <button type="submit" class="btn btn-primary">New Set List</button>
                                 </form>
                             </th>
@@ -47,7 +49,23 @@
                 </table>
 
                 <h2>Current Bands</h2>
-                
+
+                <?php
+                    include '../db-connect.php';
+                    $query = $pdo->prepare("SELECT form_band.band_id, band.band_name FROM form_band 
+                                            JOIN band on form_band.band_id = band.band_id
+                                            WHERE form_band.artist_id = $id");
+                    $query->execute();
+                    while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+                            printf("<h3>ID: %s Name: %s</h3>",$row[0], $row[1]);
+                    }
+                ?>
+                <br>
+
+                <form action="../index.php?id=<?php echo $id;?>" method="post">
+                    <input type="hidden" name="id" value=<?php echo $id;?>>
+                    <button type="submit" class="btn btn-primary">Home</button>
+                </form>
             </div> 
         </div>
 

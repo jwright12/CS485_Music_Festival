@@ -52,7 +52,7 @@
 				<div>
 					<a><h2>%s</h2></a>
 					<form method=\"get\">
-						<button type=\"submit\" formaction=\"../login.php\" class=\"btn btn-primary\">Buy Tickets</button>
+						<button type=\"submit\" formaction=\"./festival/customer.php\" class=\"btn btn-primary\">Buy Tickets</button>
 					</form>
 				</div>",$row[0]
 			);

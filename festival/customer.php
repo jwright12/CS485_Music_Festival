@@ -7,9 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Ultimate Music Festival Manager - Pro Version</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
         <style>body {margin-top: 40px; background-color: #333;}</style>
-        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -30,19 +30,8 @@
 				<form action="" method="post">
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "88888888";
-$dbname = "musicfes";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-$con=mysqli_connect("localhost","root","88888888","musicfes");
+$con=mysqli_connect("localhost","root","","music_festival");
 // Check connection
 if (mysqli_connect_errno())
 {
