@@ -7,45 +7,17 @@
 
 		$query = $pdo->prepare("SELECT user.user_id, user.username, user.user_password 
 		FROM user 
-		join customer
-		on user.user_id = customer.customer_id
 		WHERE user.username='$u' AND user.user_password='$p'");
 		$query->execute();
 		$row_count = $query->rowCount();
 
-		$query2 = $pdo->prepare("SELECT user.user_id, user.username, user.user_password 
-		FROM user 
-		join artist
-		on user.user_id = artist.artist_id
-		WHERE user.username='$u' AND user.user_password='$p'");
-		$query2->execute();
-		$row_count2 = $query2->rowCount();
-
-		$query3 = $pdo->prepare("SELECT user.user_id, user.username, user.user_password 
-		FROM user 
-		join administrator
-		on user.user_id = administrator.admin_id
-		WHERE user.username='$u' AND user.user_password='$p'");
-		$query3->execute();
-		$row_count3 = $query3->rowCount();
-
-		if($row_count == 1){
+		if($row_count >= 1){
 			$array = $query->fetch();
 			$id = $array[0];
 
-			header("Location: http://cs485.localhost/festival/customer.php?id=$id");
+			header("Location: http://cs485.localhost/index.php?id=$id");
 			
-		}elseif ($row_count2 == 1){
-			$array = $query->fetch();
-			$id = $array[0];
-
-			header("Location: http://cs485.localhost/artist/artist.php?id=$id");
-		}elseif ($row_count3 == 1){
-			$array = $query->fetch();
-			$id = $array[0];
-
-			header("Location: http://cs485.localhost/admin/admin.php?id=$id");
-		}else {
+		} else {
 			$message = "Invalid username or password.";
 		}
 	} 

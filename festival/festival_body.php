@@ -27,38 +27,45 @@
 		
 	} else {
 		printf("
-			<h2>Register or Login</h2>
+			<h2>Create An Account To View Festival Details</h2>
 	
 			<form method=\"get\">
 				<button type=\"submit\" formaction=\"../login.php\" class=\"btn btn-primary\">Login</button>
 				<button type=\"submit\" formaction=\"../register.php\" class=\"btn btn-primary\">Sign Up</button>
 			</form>
-
-			<br>
-
-			<h1>Upcoming Festivals</h1>
-
-			<br>
 		");
 	}
 ?>
 <?php
-	include 'db-connect.php';
-	$query = $pdo->prepare('SELECT user.f_name FROM user');
-	$query->execute();
-	while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
-		if(isset($_GET['id'])){
+	if(isset($_GET['id'])){
+		$id = $_GET['id'];
+		include 'db-connect.php';
+		$query = $pdo->prepare("SELECT festival_name, festival_date, location, festival_id FROM festival");
+		$query->execute();
+
+		echo "<table width='98%' border='1'name='table';>
+		<tr>
+		<th>Event</th>
+		<th>Date and Time</th>
+		<th>Location</th>
+		</tr>";
+
+		while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
 			printf("
-				<div>
-					<a><h2>%s</h2></a>
-					<form method=\"get\">
-						<button type=\"submit\" formaction=\"./festival/customer.php\" class=\"btn btn-primary\">Buy Tickets</button>
-					</form>
-				</div>",$row[0]
-			);
-		} else {
-			printf("<h2>%s</h2>",$row[0]);
-		}
+					<tr>
+					<td>%s</td>
+					<td>%s</td>
+					<td>%s</td>
+					<td>
+						<form action=\"festival/buyticket.php?f_id=$row[3]&id=$id\" method=\"post\">
+							<input type=\"hidden\" name=\"id\" value=$id> 
+							<input type=\"hidden\" name=\"f_id\" value=$row[3]> 
+							<button type=\"submit\" class=\"btn btn-primary\">Buy Tickets</button>
+						</form>
+					</td>
+					</tr>
+			", $row[0], $row[1], $row[2]);
+		} 
 	}
 ?>
        
