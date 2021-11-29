@@ -1,6 +1,6 @@
 <?php
 	if(count($_POST)>0) {
-		include 'db-connect.php';
+		include '../db-connect.php';
 		$pdo->beginTransaction();
 
 		$f = $_POST['first_name'];
