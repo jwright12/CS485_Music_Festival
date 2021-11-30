@@ -1,5 +1,10 @@
 <?php
-	if(count($_POST)>0) {
+	$id = $_POST['id'];
+	
+	if(isset($_POST['type'])) {
+		header("Location: http://cs485.localhost/admin/admin.php?id=$id");
+	}
+	if(count($_POST)>1) {
 		include '../db-connect.php';
 		$pdo->beginTransaction();
 
@@ -19,8 +24,6 @@
         $query = $pdo->prepare("INSERT INTO artist (artist_id) values ('$di')");
 		$query->execute();
 
-		// Could be a problem. Make just use username as unique identifier
-		// Should probably also insert U ID into customer table
 		$query = $pdo->prepare("SELECT user.user_id FROM user WHERE user.f_name='$f' AND user.l_name='$l'");
 		$query->execute();
 
@@ -36,8 +39,6 @@
 		$pdo->commit();
 
 		$message = "Artist Registration Successful";
-		
-		header("Location: http://localhost/artist.php?id=$id");
 	} 
 ?>
 
@@ -49,9 +50,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Ultimate Music Festival Manager - Pro Version</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
         <style>body {margin-top: 40px; background-color: #333;}</style>
-        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -62,7 +63,7 @@
 				<?php if(isset($message)) { echo $message; } ?>
 				<br>
 				<form action="" method="post">
-
+					<input type="hidden" name="a_id" value=""> 
 					<div class="mb-3">
 							<label for="first_name" class="form-label"><b>First Name</b></label>
 							<input type="text" class="form-control" name="first_name">
@@ -93,6 +94,12 @@
                     </div>
 
 					<button type="submit" class="btn btn-primary">Register</button>
+				</form>
+
+				<form action="" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id;?>">
+                    <input type="hidden" name="type" value=1>
+					<button type="submit" class="btn btn-primary">Admin Overview</button>
 				</form>
 
             </div> 

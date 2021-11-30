@@ -9,8 +9,8 @@
                   <thead>
                   <tr>
                         <th scope=\"col\">
-                              <form action=\"\" method=\"post\">
-                                    <input type=\"hidden\" name=\"id\" value=\"\"> 
+                              <form action=\"manage_artist.php?id=$id\" method=\"post\">
+                                    <input type=\"hidden\" name=\"id\" value=\"$id\"> 
                                     <button type=\"submit\" class=\"btn btn-primary\">Register Artist</button>
                               </form>
                         </th>
