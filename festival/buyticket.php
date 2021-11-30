@@ -93,9 +93,10 @@
                 if(isset($_POST['buyit'])) 
                     {
 
-                echo '<script>alert("Thank you for purchasing");
-                window.location = "http://localhost/index.php";
-                </script>';
+                $id = $_POST['id'];
+                printf("<script>alert(\"Thank you for purchasing\");
+                window.location = \"http://cs485.localhost/index.php\";
+                </script>");
         
                 }
  
