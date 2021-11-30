@@ -45,26 +45,16 @@
                 <?php if(isset($message)){echo $message;}?>
                 <?php include 'admin_body.php';?>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                 <?php
 
 if(isset($_GET['id'])){
 
 $id = $_GET['id'];
 include '../db-connect.php';
-$query = $pdo->prepare("SELECT festival.festival_name,festival.festival_id, festival.festival_date, location, band.band_name, ticket.quant as 'seat left'
-FROM festival
-join ticket
-on festival.festival_id = ticket.festival_id
-join schedule
-on festival.schedule_id = schedule.schedule_id
-join scheduled_performance
-on scheduled_performance.schedule_id = schedule.schedule_id
-join performance 
-on scheduled_performance.performance_id = performance.performance_id
-join band
-on band.band_id = performance.band_id");
+$query = $pdo->prepare("SELECT festival.festival_name,festival.festival_id, festival.festival_date, location, ticket.quant as 'seat left'
+                        FROM festival
+                        join ticket
+                        on festival.festival_id = ticket.festival_id");
 $query->execute();
 
 
@@ -91,26 +81,14 @@ while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
                 </form>
             </td>
             </tr>
-    ", $row[0], $row[2], $row[3], $row[5]);
+    ", $row[0], $row[2], $row[3], $row[4]);
 }
 }
 ?>
 
-
-=======
                 <form action="../index.php" method="post">
                     <button type="submit" class="btn btn-primary">Home</button>
                 </form>
->>>>>>> Stashed changes
-=======
-                <form action="../index.php" method="post">
-                    <button type="submit" class="btn btn-primary">Home</button>
-                </form>
->>>>>>> Stashed changes
-            </div> 
-
-            
-
 
         </div>
         
