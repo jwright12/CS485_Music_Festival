@@ -46,6 +46,7 @@
                 <?php include 'admin_body.php';?>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <?php
 
 if(isset($_GET['id'])){
@@ -96,6 +97,11 @@ while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
 ?>
 
 
+=======
+                <form action="../index.php" method="post">
+                    <button type="submit" class="btn btn-primary">Home</button>
+                </form>
+>>>>>>> Stashed changes
 =======
                 <form action="../index.php" method="post">
                     <button type="submit" class="btn btn-primary">Home</button>
