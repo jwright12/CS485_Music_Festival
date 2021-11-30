@@ -73,13 +73,6 @@ while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
             <td>%s</td>
             <td>%s</td>
             <td>%s</td>
-            <td>
-                <form action=\"festival/buyticket.php?f_id=$row[3]&id=$id\" method=\"post\">
-                    <input type=\"hidden\" name=\"id\" value=$id> 
-                    <input type=\"hidden\" name=\"f_id\" value=$row[1]> 
-                    <button type=\"submit\" name=\"ticketbuying\" class=\"btn btn-primary\">Edit</button>
-                </form>
-            </td>
             </tr>
     ", $row[0], $row[2], $row[3], $row[4]);
 }

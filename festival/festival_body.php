@@ -53,7 +53,7 @@
 		while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
 			printf("
 					<tr>
-					<td>%s</td>
+					<td><a href=\"http://cs485.localhost/festival/festival_details.php?id=$id&f_id=$row[3]\">%s</a></td>
 					<td>%s</td>
 					<td>%s</td>
 					<td>
