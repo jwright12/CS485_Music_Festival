@@ -12,8 +12,6 @@
 
 		$query = $pdo->prepare("INSERT INTO user (user_id, f_name, l_name, username, user_password) values (null, '$f', '$l', '$u', '$p')");
 		$query->execute();
-		// Could be a problem. Make just use username as unique identifier
-		// Should probably also insert U ID into customer table
 		$query = $pdo->prepare("SELECT user.user_id FROM user WHERE user.f_name='$f' AND user.l_name='$l'");
 		$query->execute();
 		$array = $query->fetch();
