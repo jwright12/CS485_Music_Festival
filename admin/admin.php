@@ -44,10 +44,64 @@
 
                 <?php if(isset($message)){echo $message;}?>
                 <?php include 'admin_body.php';?>
-    
-            </div> 
-        </div>
 
+                <?php
+
+if(isset($_GET['id'])){
+
+$id = $_GET['id'];
+include '../db-connect.php';
+$query = $pdo->prepare("SELECT festival.festival_name,festival.festival_id, festival.festival_date, location, band.band_name, ticket.quant as 'seat left'
+FROM festival
+join ticket
+on festival.festival_id = ticket.festival_id
+join schedule
+on festival.schedule_id = schedule.schedule_id
+join scheduled_performance
+on scheduled_performance.schedule_id = schedule.schedule_id
+join performance 
+on scheduled_performance.performance_id = performance.performance_id
+join band
+on band.band_id = performance.band_id");
+$query->execute();
+
+
+echo "<table width='98%' border='1'name='table';>
+<tr>
+<th>Event</th>
+<th>Date and Time</th>
+<th>Location</th>
+<th>Seat Left</th>
+</tr>";
+
+while($row = $query->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+    printf("
+            <tr>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>
+                <form action=\"festival/buyticket.php?f_id=$row[3]&id=$id\" method=\"post\">
+                    <input type=\"hidden\" name=\"id\" value=$id> 
+                    <input type=\"hidden\" name=\"f_id\" value=$row[1]> 
+                    <button type=\"submit\" name=\"ticketbuying\" class=\"btn btn-primary\">Edit</button>
+                </form>
+            </td>
+            </tr>
+    ", $row[0], $row[2], $row[3], $row[5]);
+}
+}
+?>
+
+
+            </div> 
+
+            
+
+
+        </div>
+        
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
     </body>
